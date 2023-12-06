@@ -41,7 +41,7 @@ console.timeLog('day5')
 let ans1 = Number.MAX_SAFE_INTEGER
 seeds.forEach(seed => {
   for (const flow of mapFlow) {
-    for(const map of flow) {
+    for (const map of flow) {
       const [target, source, range] = map
       if (source <= seed && seed <= source + range) {
         seed = target + (seed - source)
@@ -49,64 +49,49 @@ seeds.forEach(seed => {
       }
     }
   }
-  
+
   ans1 = Math.min(ans1, seed)
 })
 
 console.log('ans1', ans1)
 console.timeLog('day5')
 
-let ans2 = Number.MAX_SAFE_INTEGER
-humidity2LocationMap.sort((a, b) => a[0] - b[0]).forEach(([target, source, range]) => {
-  console.log(target, source)
 
-  for(let i=0; i<source + range; i++) {
+let ans2 = Infinity
+for (const flow of mapFlow) {
+  let i = 0;
+  let seedLength = seeds.length
+  while (i < seedLength) {
+    const start = seeds[i]
+    const end = start + seeds[i + 1] - 1
+    let seed = start
+    for (const map of flow) {
+      const [target, source, range] = map
+      const rangeEnd = source + range - 1
+      if (source <= seed && end <= rangeEnd) {
+        seed = target + (seed - source)
+        seeds[i] = seed
+        break;
+      } else if (source <= seed && seed <= rangeEnd) {
+        const over = end - rangeEnd
+        seeds.push(seed + (seeds[i + 1] - over))
+        seeds.push(over)
+        
+        seed = target + (seed - source)
+        seeds[i] = seed
+        seeds[i+1] -= over
+        break;
+      }
+    }
 
+    i += 2
+    seedLength = seeds.length
   }
-})
-// for(let i=0; i<seeds.length; i+=2) {
-//   const start = seeds[i]
-//   let length = seeds[i+1]
-//   const end = start + length - 1
-//   let j=start;
-//   let step = 0
-//   while(j <= end) {
-//     let seed = j
-//     for (const flow of mapFlow) {
-//       for(const map of flow) {
-//         const [target, source, range] = map
+}
 
-//         if (seed > source + range) {
-//           continue
-//         }
-
-//         if (seed < source) {
-//           if (seed + (end-j) >= source) {
-//             step = Math.abs(source - seed)
-//           }
-//           continue
-//         }
-
-//         if (!step && seed + (end-j) > source + range) {
-//           step = Math.abs((source + range) - seed + 1)
-//         }
-//         seed = target + (seed - source)
-
-//         break;
-//       }
-//     }
-
-//     ans2 = Math.min(ans2, seed)
-//     // console.log(j + ' ==> ' + seed)
-//     if (step) {
-//       j+=step
-//     } else {
-//       j++
-//     }
-//     step = 0
-//   }
-//   // console.log('-------', j)
-// }
+for(let i=0; i<seeds.length; i+=2) {
+  ans2 = Math.min(ans2, seeds[i])
+}
 
 console.log('ans2', ans2)
 console.timeLog('day5')
