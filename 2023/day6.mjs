@@ -1,7 +1,6 @@
 import { inputDemo, input } from './input/day6.mjs'
 
 const [time, distance] = input.split('\n').map(lint => lint.split(' ').map(Number).filter(n => n > 0))
-console.log(time, distance)
 
 console.time('ans1')
 let ans1 = 1
@@ -25,17 +24,30 @@ console.timeLog('ans1', ans1)
 
 const newTime = +time.reduce((ret, cur) => `${ret}${cur}`, '')
 const newDistance = +distance.reduce((ret, cur) => `${ret}${cur}`, '')
-console.log(newTime, newDistance)
 
 
 console.time('ans2')
 let ans2 = 0
-for (let j = 0; j < newTime; j++) {
-  const reminderTime = newTime - j;
-  const allDistance = j * reminderTime
-  if (allDistance > newDistance) {
-    ans2++
+
+let start = -1, end = -1
+while(start < 0 || end < 0) {
+  for (let j = 0; j < newTime; j++) {
+    if (start < 0 && j * (newTime - j) > newDistance) {
+      start = j
+    }
+    if (end < 0 && (newTime - j) * j > newDistance) {
+      end = newTime - j
+    }
+
+    if (start >= 0 && end >= 0) {
+      break
+    }
+  }
+  
+  if (start && end) {
+    ans2 = end - start + 1
   }
 }
+
 
 console.timeLog('ans2', ans2)
