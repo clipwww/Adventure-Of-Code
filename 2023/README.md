@@ -30,7 +30,7 @@
   - ✅ part1
   - ✅ part2
 - day10
-  - ⬜️ part1
+  - ✅ part1
   - ⬜️ part2
 - day11
   - ⬜️ part1
