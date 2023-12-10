@@ -27,8 +27,8 @@
   - ✅ part1
   - ✅ part2
 - day9
-  - ⬜️ part1
-  - ⬜️ part2
+  - ✅ part1
+  - ✅ part2
 - day10
   - ⬜️ part1
   - ⬜️ part2
