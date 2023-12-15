@@ -1,7 +1,13 @@
-import { inputDemo, input } from './input/day.mjs';
+import { inputDemo } from './input/day12.mjs';
 
 console.time('init')
-const inputArr = input.split('\n')
+const inputArr = inputDemo.split('\n').map(line => {
+  const [springs, records] = line.split(' ')
+  return [
+    springs.split('.').filter(Boolean),
+    records.split(',').map(Number)
+  ]
+})
 console.timeEnd('init')
 console.log(inputArr)
 

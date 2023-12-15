@@ -39,14 +39,14 @@
   - ⬜️ part1
   - ⬜️ part2
 - day13
-  - ⬜️ part1
+  - ✅ part1
   - ⬜️ part2
 - day14
-  - ⬜️ part1
+  - ✅ part1
   - ⬜️ part2
 - day15
-  - ⬜️ part1
-  - ⬜️ part2
+  - ✅ part1
+  - ✅ part2
 - day16
   - ⬜️ part1
   - ⬜️ part2
