@@ -48,7 +48,7 @@
   - ✅ part1
   - ✅ part2
 - day16
-  - ⬜️ part1
+  - ⚠️ part1 🙈 
   - ⬜️ part2
 - day17
   - ⬜️ part1
