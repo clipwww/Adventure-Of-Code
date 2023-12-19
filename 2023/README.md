@@ -57,7 +57,7 @@
   - ⬜️ part1
   - ⬜️ part2
 - day19
-  - ⬜️ part1
+  - ✅ part1
   - ⬜️ part2
 - day20
   - ⬜️ part1
